@@ -72,4 +72,12 @@ var tbl = data[firstSheet];
 // ...
 ```
 
+## Author
+
+Csaba Csonka
+
+## Licence
+
+MIT
+
 

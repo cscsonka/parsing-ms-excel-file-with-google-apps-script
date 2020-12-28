@@ -6,15 +6,15 @@ Parsing MS Excel files and returns values in JSON format.
 
 ### Method
 
-MS Excel wrokbooks are zipped collections of XML files.
+MS Excel workbooks are zipped collections of XML files.
 The method `Utilities.unzip(blob)` can be used to unzip MS Excel files.
-Getting the unzipped XML files as string data can be extracted based on specific patters.
+Getting the unzipped XML files as string data can be extracted based on specific patters. This approach results in much faster processing time than using `XmlService.parse(xml)`.
 
 ### Usage
 
 The function `parseMSExcelBlob(blob, requiredSheets)` is for parsing MS Excel file and returns data in 2D arrays.
-First parameter is the MS Excel blob.
-Second parameter is an array of required sheet names so you can restrict the parsing process for specific worksheets saving some time and resource.
+* First parameter is the MS Excel `blob`.
+* Second parameter is an array of required sheet names so you can restrict the parsing process for specific worksheets saving some time and resource.
 If parameter `requiredSheets` is omitted all worksheets will be parsed in the workbook.
 
 ## Examples

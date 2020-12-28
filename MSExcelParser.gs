@@ -5,7 +5,7 @@
 * @param {String[]} requiredSheets the array of required sheet names (if omitted returns all)
 * @return {Object} Object of sheet names and values (2D arrays)
 */
-function parseExcelBlob(blob, requiredSheets){
+function parseMSExcelBlob(blob, requiredSheets){
     var col_cache = {};
     var forbidden_chars = {
         "&lt;": "<",

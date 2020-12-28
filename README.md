@@ -2,17 +2,21 @@
 
 Parsing MS Excel files and returns values in JSON format.
 
-## Overview
+## 👀 Overview
 
-There is no direct method to get data from MS Excel files stored on Google Drive so far. The usual workaround is to first convert the native MS Excel file to Google Spreadsheet and than use some of the GAS function to extract data. The provided solution solves the problem without conversion, opening and parsing directly the MS Excel file.
+So far there is no native Google Apps Script method to get data directly from MS Excel files stored on Google Drive or in gmail attachment.  
+The widespread workaround is to first convert the MS Excel workbook to Google Spreadsheet and than use GAS `SpreadsheetApp` functions to extract data.  
+The function `parseMSExcelBlob(blob, requiredSheets)` provided in this repo resolves this issue without conversion, opening and parsing directly the MS Excel file.
 
-## Description
+## ✍🏼 Description
 
 ### Method
 
-MS Excel workbooks are zipped collections of XML files.
-The method `Utilities.unzip(blob)` can be used to unzip MS Excel files.
-Getting the unzipped XML files as string data can be extracted based on specific patters. This approach results in much faster processing time than using `XmlService.parse(xml)`.
+MS Excel workbooks are zipped collections of XML files.  
+Using GAS function `Utilities.unzip(blob)` it can be unzipped.  
+Knowing the XML structure of the unzipped files you can extract data.  
+Ideal solution is to parse and access data using GAS function `XmlService.parse(xml)` but it turned out to be quite slow.
+However getting the unzipped XML files text content with the function `getDataAsString()` data can be extracted based on specific XML patters. The function `parseMSExcelBlob(blob, requiredSheets)` uses this approach and has much faster processing time than using `XmlService.parse(xml)`.
 
 ### Usage
 
@@ -21,7 +25,7 @@ The function `parseMSExcelBlob(blob, requiredSheets)` is for parsing MS Excel fi
 * Second parameter is an array of required sheet names so you can restrict the parsing process for specific worksheets saving some time and resource.
 If parameter `requiredSheets` is omitted all worksheets will be parsed in the workbook.
 
-## Examples
+## ⚙️ Examples
 
 ### Sample script #1
 
@@ -76,12 +80,22 @@ var tbl = data[firstSheet];
 // ...
 ```
 
-## Author
+# 📝 License
 
-Csaba Csonka
+This project is licensed under [MIT](https://opensource.org/licenses/MIT) license.
 
-## Licence
+# ✉️ Contact
 
-MIT
+Csaba Csonka - cscsonka@gmail.com
+
+Project Link: https://github.com/cscsonka/Parsing-MS-Excel-file-with-Google-Apps-Script
+
+# 🤓 Contribute
+
+Contributions are always welcome! Please create a PR to show your idea.
+
+# ⭐️ Show your support
+
+Give a star if this project helped you!
 
 

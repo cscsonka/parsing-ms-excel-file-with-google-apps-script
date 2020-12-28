@@ -4,9 +4,9 @@ Parsing MS Excel files and returns values in JSON format.
 
 ## 👀 Overview
 
-So far there is no native Google Apps Script method to get data directly from MS Excel files stored on Google Drive or in gmail attachment.  
+So far there is no native Google Apps Script method to get data straight from MS Excel files stored on Google Drive or in gmail attachment.  
 The widespread workaround is to first convert the MS Excel workbook to Google Spreadsheet and than use GAS `SpreadsheetApp` functions to extract data.  
-The function `parseMSExcelBlob(blob, requiredSheets)` provided in this repo resolves this issue without conversion, opening and parsing directly the MS Excel file.
+The function `parseMSExcelBlob(blob, requiredSheets)` provided in this repo can open and parse directly MS Excel files without any upload or conversion to Google Spreadsheet.
 
 ## ✍🏼 Description
 

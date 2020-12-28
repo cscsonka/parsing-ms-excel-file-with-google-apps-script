@@ -2,6 +2,10 @@
 
 Parsing MS Excel files and returns values in JSON format.
 
+## Overview
+
+There is no direct method to get data from MS Excel files stored on Google Drive so far. The usual workaround is to first convert the native MS Excel file to Google Spreadsheet and than use some of the GAS function to extract data. The provided solution solves the problem without conversion, opening and parsing directly the MS Excel file.
+
 ## Description
 
 ### Method

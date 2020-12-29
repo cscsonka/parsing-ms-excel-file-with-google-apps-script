@@ -5,7 +5,7 @@ Parsing MS Excel files and returns values in JSON format.
 ## 👀 Overview
 
 So far there is no native Google Apps Script method to get data straight from MS Excel files stored on Google Drive or in gmail attachment.  
-The widespread workaround is to first convert the MS Excel workbook to Google Spreadsheet and than use GAS `SpreadsheetApp` functions to extract data.  
+The widespread workaround is to first convert the MS Excel workbook to Google Spreadsheet and than use Apps Script `SpreadsheetApp` functions to extract data.  
 The function `parseMSExcelBlob(blob, requiredSheets)` provided in this repo can open and parse directly MS Excel files without any upload or conversion to Google Spreadsheet.
 
 ## 💻 Built with
@@ -16,9 +16,7 @@ The function `parseMSExcelBlob(blob, requiredSheets)` provided in this repo can 
 
 ### Method
 
-MS Excel workbooks are zipped collections of XML files (except binary ).  
-Using GAS function `Utilities.unzip(blob)` it can be unzipped.  
-Knowing the XML structure of the unzipped files you can extract data.  
+MS Excel workbooks are zipped collections of XML files (except binary files). Using GAS function `Utilities.unzip(blob)` it can be unzipped and knowing the XML structure of the unzipped files you can extract the necessary data.  
 Ideal solution is to parse and access data using GAS function `XmlService.parse(xml)` but it turned out to be quite slow.
 However getting the unzipped XML files text content with the function `getDataAsString()` data can be extracted based on specific XML patters. The function `parseMSExcelBlob(blob, requiredSheets)` uses this approach and has much faster processing time than using `XmlService.parse(xml)`.
 
@@ -105,9 +103,9 @@ Project Link: https://github.com/cscsonka/Parsing-MS-Excel-file-with-Google-Apps
 
 ## 🤓 Contribute
 
-Contributions are always welcome! Please create a PR to show your idea.
+Contributions are always welcome! Create a PR to show your idea.
 
-## ⭐️ Show your support
+## ⭐️ Support
 
 Give a star if this project helped you!  
 

@@ -31,7 +31,7 @@ If parameter `requiredSheets` is omitted all worksheets will be parsed in the wo
 
 ### Limitation
 
-* For the moment `parseMSExcelBlob(blob, requiredSheets)` can only digest XML based excel files (not .xlsb). 
+* For the moment `parseMSExcelBlob(blob, requiredSheets)` can digest only XML based excel files (not .xlsb).
 * Maximum blob size allowed is 50MB.
 
 ## ⚙️ Examples

@@ -24,8 +24,7 @@ However getting the unzipped XML files text content with the function `getDataAs
 
 The function `parseMSExcelBlob(blob, requiredSheets)` is parsing MS Excel files and returns values in JSON format.
 * First parameter is the MS Excel `blob`.
-* Second parameter is an array of required sheet names so you can restrict the parsing process for specific worksheets saving some time and resource.  
-If parameter `requiredSheets` is omitted all worksheets will be parsed in the workbook.
+* Second parameter is an array of required sheet names so you can restrict the parsing process for specific worksheets saving some time and resource. If parameter `requiredSheets` is omitted all worksheets will be parsed in the workbook.
 
 ### Limitation
 

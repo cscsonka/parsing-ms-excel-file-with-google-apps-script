@@ -8,11 +8,15 @@ So far there is no native Google Apps Script method to get data straight from MS
 The widespread workaround is to first convert the MS Excel workbook to Google Spreadsheet and than use GAS `SpreadsheetApp` functions to extract data.  
 The function `parseMSExcelBlob(blob, requiredSheets)` provided in this repo can open and parse directly MS Excel files without any upload or conversion to Google Spreadsheet.
 
+## 💻 Built with
+
+* [Google Apps Script](https://developers.google.com/apps-script)
+
 ## ✍🏼 Description
 
 ### Method
 
-MS Excel workbooks are zipped collections of XML files.  
+MS Excel workbooks are zipped collections of XML files (except binary ).  
 Using GAS function `Utilities.unzip(blob)` it can be unzipped.  
 Knowing the XML structure of the unzipped files you can extract data.  
 Ideal solution is to parse and access data using GAS function `XmlService.parse(xml)` but it turned out to be quite slow.
@@ -20,10 +24,15 @@ However getting the unzipped XML files text content with the function `getDataAs
 
 ### Usage
 
-The function `parseMSExcelBlob(blob, requiredSheets)` is for parsing MS Excel file and returns data in 2D arrays.
+The function `parseMSExcelBlob(blob, requiredSheets)` is parsing MS Excel files and returns values in JSON format.
 * First parameter is the MS Excel `blob`.
-* Second parameter is an array of required sheet names so you can restrict the parsing process for specific worksheets saving some time and resource.
+* Second parameter is an array of required sheet names so you can restrict the parsing process for specific worksheets saving some time and resource.  
 If parameter `requiredSheets` is omitted all worksheets will be parsed in the workbook.
+
+### Limitation
+
+* For the moment `parseMSExcelBlob(blob, requiredSheets)` can only digest XML based excel files (not .xlsb). 
+* Maximum blob size allowed is 50MB.
 
 ## ⚙️ Examples
 
@@ -32,23 +41,25 @@ If parameter `requiredSheets` is omitted all worksheets will be parsed in the wo
 Getting data from a MS Excel file saved in Google Drive from a worksheet called "Orders".
 
 ```javascript
-var ss = SpreadsheetApp.getActiveSpreadsheet();
+function getDataFromDrive(){
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
 
-// getting a MS Excel file in Google Drive
-var file = DriveApp.getFileById("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-var blob = file.getBlob();
+    // getting a MS Excel file in Google Drive
+    var file = DriveApp.getFileById("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    var blob = file.getBlob();
 
-// if second parameter is not provided all sheets will be parsed
-var data = parseMSExcelBlob(blob, ["Orders"]);
+    // if second parameter is not provided all sheets will be parsed
+    var data = parseMSExcelBlob(blob, ["Orders"]);
 
-// test if everything is good
-if( data["Error"] ) return ss.toast(data["Error"], "Something went wrong 🙄", 10);
+    // test if everything is good
+    if( data["Error"] ) return ss.toast(data["Error"], "Something went wrong 🙄", 10);
 
-// here we have the data in 2D array
-var tbl = data["Orders"];
+    // here we have the data in 2D array
+    var tbl = data["Orders"];
 
-// do your stuff
-// ...
+    // do your stuff
+    // ...
+}
 ```
 
 ### Sample script #2
@@ -56,28 +67,30 @@ var tbl = data["Orders"];
 Getting data from a MS Excel file attachment of an email with subject "MyDailyReport".
 
 ```javascript
-var ss = SpreadsheetApp.getActiveSpreadsheet();
+function getDataFromGmail(){
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
 
-// getting a MS Excel attachment from email
-var subject = "MyDailyReport";
-var threads = GmailApp.search('subject:"' + subject + '"');
-var messages = GmailApp.getMessagesForThreads(threads);
-var msg_id = messages[0][0].getId();
-var file = GmailApp.getMessageById(msg_id).getAttachments()[0];
-var blob = file.copyBlob();
+    // getting a MS Excel attachment from email
+    var subject = "MyDailyReport";
+    var threads = GmailApp.search('subject:"' + subject + '"');
+    var messages = GmailApp.getMessagesForThreads(threads);
+    var msg_id = messages[0][0].getId();
+    var file = GmailApp.getMessageById(msg_id).getAttachments()[0];
+    var blob = file.copyBlob();
 
-// if second parameter is not provided all sheets will be parsed
-var data = parseMSExcelBlob(blob);
+    // if second parameter is not provided all sheets will be parsed
+    var data = parseMSExcelBlob(blob);
 
-// test if everything is good
-if( data["Error"] ) return ss.toast(data["Error"], "Something went wrong 🙄", 10);
+    // test if everything is good
+    if( data["Error"] ) return ss.toast(data["Error"], "Something went wrong 🙄", 10);
 
-// here we have the data in 2D array
-var firstSheet = Object.keys(data)[0];
-var tbl = data[firstSheet];
+    // here we have the data in 2D array
+    var firstSheet = Object.keys(data)[0];
+    var tbl = data[firstSheet];
 
-// do your stuff
-// ...
+    // do your stuff
+    // ...
+}
 ```
 
 # 📝 License
@@ -96,6 +109,10 @@ Contributions are always welcome! Please create a PR to show your idea.
 
 # ⭐️ Show your support
 
-Give a star if this project helped you!
+Give a star if this project helped you!  
+
+<a href="https://www.buymeacoffee.com/cscsonka" target="_blank">
+  <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee">
+</a>
 
 

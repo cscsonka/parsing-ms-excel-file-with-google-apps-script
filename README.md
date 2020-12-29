@@ -93,21 +93,21 @@ function getDataFromGmail(){
 }
 ```
 
-# 📝 License
+## 📝 License
 
 This project is licensed under [MIT](https://opensource.org/licenses/MIT) license.
 
-# ✉️ Contact
+## ✉️ Contact
 
 Csaba Csonka - cscsonka@gmail.com
 
 Project Link: https://github.com/cscsonka/Parsing-MS-Excel-file-with-Google-Apps-Script
 
-# 🤓 Contribute
+## 🤓 Contribute
 
 Contributions are always welcome! Please create a PR to show your idea.
 
-# ⭐️ Show your support
+## ⭐️ Show your support
 
 Give a star if this project helped you!  
 

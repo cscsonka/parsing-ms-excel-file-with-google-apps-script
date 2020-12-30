@@ -16,8 +16,8 @@ The function `parseMSExcelBlob(blob, requiredSheets)` provided in this repo can 
 
 ### Method
 
-MS Excel workbooks are zipped collections of XML files (except binary files). Using GAS function `Utilities.unzip(blob)` it can be unzipped and knowing the XML structure of the unzipped files you can extract the necessary data.  
-Then The seemingly straightforward solution to parse and access data in XML files would be to use Apps Script native function `XmlService.parse(xml)` but it turned out to be quite slow. However getting the unzipped XML files text content with the function `getDataAsString()` data can be extracted based on specific XML patters. The function `parseMSExcelBlob(blob, requiredSheets)` uses this approach and has much faster processing time than using `XmlService.parse(xml)`.
+MS Excel workbooks are zipped collections of XML files (except binary files). Using GAS function `Utilities.unzip(blob)` it can be unzipped and knowing the XML structure of the unzipped files you can extract the data needed.  
+Then the seemingly straightforward solution to parse and access data in XML files would be to use Apps Script native function `XmlService.parse(xml)` but it turned out to be quite slow. However getting the unzipped XML files text content with the function `getDataAsString()` data can be retrieved based on specific XML patters. The function `parseMSExcelBlob(blob, requiredSheets)` uses this approach and has much faster processing time than using `XmlService.parse(xml)`.
 
 ### Usage
 

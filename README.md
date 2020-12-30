@@ -29,7 +29,7 @@ The function `parseMSExcelBlob(blob, requiredSheets)` is parsing MS Excel files 
 
 * For the moment `parseMSExcelBlob(blob, requiredSheets)` can process only XML based excel files (not .xlsb).
 * Maximum file size allowed in `Utilities.unzip(blob)` is 50MB.
-* Zip file content item (unzipped XML worksheet) can not exceed limit of 100MB.
+* Zip file content item (unzipped XML file of a worksheet) can not exceed limit of 100MB.
 
 ## ⚙️ Examples
 

@@ -12,7 +12,7 @@ The function `parseMSExcelBlob(blob, requiredSheets)` provided in this repo can 
 
 * [Google Apps Script](https://developers.google.com/apps-script)
 
-## ✍🏼 Description
+## ✍🏽 Description
 
 ### Method
 

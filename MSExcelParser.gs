@@ -68,7 +68,7 @@ function parseMSExcelBlob(blob, requiredSheets){
             sharedStrings = breakUpString(txt, '<si>', '</si>');
             for( var i = 0; i < sharedStrings.length; i++ ){
                 var str = breakUpString(sharedStrings[i], '<t>', '</t>')[0];
-                sharedStrings[i] = decodeForbiddenChars(sharedStrings[i]);
+                sharedStrings[i] = decodeForbiddenChars(str);
             }
         }
     }

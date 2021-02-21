@@ -65,8 +65,9 @@ function parseMSExcelBlob(blob, requiredSheets){
         if( part_name === "xl/sharedStrings.xml" ){
             var txt = part.getDataAsString();
             txt = txt.replace(/ xml:space="preserve"/g, "");
-            sharedStrings = breakUpString(txt, '<t>', '</t>');
+            sharedStrings = breakUpString(txt, '<si>', '</si>');
             for( var i = 0; i < sharedStrings.length; i++ ){
+                var str = breakUpString(sharedStrings[i], '<t>', '</t>')[0];
                 sharedStrings[i] = decodeForbiddenChars(sharedStrings[i]);
             }
         }
@@ -77,13 +78,14 @@ function parseMSExcelBlob(blob, requiredSheets){
         var part_name = part.getName();
         if( worksheets_needed.includes(part_name) ){
             var txt = part.getDataAsString();
+            txt = txt.replace(/ xml:space="preserve"/g, "");
             var cells = breakUpString(txt, '<c ', '</c>');
             var tbl = [[]];
             for( var i = 0; i < cells.length; i++ ){
                 var r = breakUpString(cells[i], 'r="', '"')[0];
                 var t = breakUpString(cells[i], 't="', '"')[0];
                 if( t === "inlineStr" ){
-                    var data = breakUpString(cells[i].replace(/ xml:space="preserve"/g, ""), '<t>', '</t>')[0];
+                    var data = breakUpString(cells[i], '<t>', '</t>')[0];
                     data = decodeForbiddenChars(data);
                 }else if( t === "s" ){
                     var v = breakUpString(cells[i], '<v>', '</v>')[0];
@@ -108,6 +110,7 @@ function parseMSExcelBlob(blob, requiredSheets){
     
     
     function decodeForbiddenChars(txt){
+        if( !txt ) return txt;
         for( var char in forbidden_chars ){
             var regex = new RegExp(char,"g");
             txt = txt.replace(regex, forbidden_chars[char]);
